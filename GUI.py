@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
-from Tasks import EmailPredict
+from TrainingModel import EmailPredict
 
 window = tk.Tk()
 window.title('Email Classification')
