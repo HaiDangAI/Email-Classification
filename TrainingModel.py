@@ -9,7 +9,7 @@ def Training(dataPath = 'data'):
     (Xtrain, ytrain) = utils.getDataTrain(dataPath+'\spamTrain.mat')
     (Xtest, ytest) = utils.getDataTest(dataPath+'\spamTest.mat')
 
-    model = LogisticRegression(class_weight={0:0.55, 1:0.45})
+    model = LogisticRegression(class_weight={0:0.7, 1:0.3})
     model.fit(Xtrain, np.array(ytrain).ravel())
     
     joblib.dump(model, 'EmailClassificationModel.pkl')
