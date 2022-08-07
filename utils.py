@@ -1,6 +1,9 @@
 import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+
 
 def getDataTrain(filename):
     data = scipy.io.loadmat(filename)
@@ -20,13 +23,14 @@ def getDataClasses(X, y):
     return (pos, neg)
 
 def makeBagWords(filename = None, email = None):
+    ps = PorterStemmer()
     vocab = [line.split()[1] for line in open('vocab.txt')]
     bag = np.zeros(len(vocab))
     if filename != None:
         email = open(filename).read().lower()
     elif email != None:
         email = email.lower()
-    words = email.split()
+    words = [ps.stem(w) for w in word_tokenize(email)]
     for i in range(len(vocab)):
         if vocab[i] in words: bag[i] = 1
     return bag
